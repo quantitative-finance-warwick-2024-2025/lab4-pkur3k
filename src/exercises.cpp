@@ -21,7 +21,9 @@ std::string day_to_name(int day_number)
             "Friday",
             "Saturday",
             "Sunday"};
-
+    if (day_number>=1 && day_number<=7){
+        return days[day_number-1];
+    }
     return invalid;
 }
 
@@ -33,6 +35,9 @@ Use print_swap to check your implementation.
 */
 void swap(int *x, int *y)
 {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
 }
 
 void print_swap()
@@ -51,6 +56,9 @@ Use print_swap_in_place to check your implementation.
 */
 void swap_in_place(int *x, int *y)
 {
+    *x = *x + *y;
+    *y = *x - *y; 
+    *x = *x - *y;
 }
 
 void print_swap_in_place()
@@ -70,6 +78,9 @@ Use print_add_vector to check your implementation.
 */
 void add_vector(int *a, int *b, int *result, int size)
 {
+    for(int i = 0; i< size; i++){
+        result[i] = a[i] + b[i];
+    }
 }
 
 void print_add_vector()
@@ -96,6 +107,10 @@ Use print_swap_vector to check your implementation.
 */
 void swap_vector(int **a, int **b)
 {
+    int *temp = *a;
+    *a = *b;
+    *b = temp;
+
 }
 
 void print_swap_vector()
@@ -131,6 +146,15 @@ result_i_j = sum(a_i_k * b_k_j) for k = 0 to k = b_rows - 1
 */
 void matrix_multiplication(int *a, int *b, size_t a_rows, size_t a_cols, size_t b_cols, int *result)
 {
+    for(unsigned long long i = 0; i < a_rows; i++){
+        for(unsigned long long j = 0; j < b_cols; j++){
+            int sum = 0;
+            for(unsigned long long k = 0; k < a_cols; k++){
+                sum += a[i * a_cols + k] * b[k * b_cols + j];
+            }
+            result[i * b_cols + j] = sum;
+        }
+    }
 }
 
 void print_matrix_multiplication()
